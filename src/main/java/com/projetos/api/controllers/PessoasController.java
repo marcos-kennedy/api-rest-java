@@ -50,6 +50,10 @@ public class PessoasController {
     public List<Pessoa> ordenarNome(){
         return pessoasRepository.findByOrderByNome();
     }
+    @GetMapping("/buscarPorTermo/{termo}")
+    public List<Pessoa> buscarTermo(@PathVariable String termo){
+        return pessoasRepository.findByNomeContaining(termo);
+    }
     @GetMapping("")
     public String mensagem(){
         return "Hello Word";
