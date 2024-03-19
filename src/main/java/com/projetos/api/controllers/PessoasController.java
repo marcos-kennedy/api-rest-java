@@ -46,6 +46,10 @@ public class PessoasController {
         long quantidade = pessoasRepository.count();
         return quantidade + " pessoas registradas";
     }
+    @GetMapping("/ordenarNome")
+    public List<Pessoa> ordenarNome(){
+        return pessoasRepository.findByOrderByNome();
+    }
     @GetMapping("")
     public String mensagem(){
         return "Hello Word";

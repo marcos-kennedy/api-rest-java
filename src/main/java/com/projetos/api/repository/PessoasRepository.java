@@ -8,6 +8,6 @@ import com.projetos.api.models.Pessoa;
 
 public interface PessoasRepository extends JpaRepository<Pessoa, Integer> {
     List<Pessoa> findAll();
-
     Pessoa findById(int id);
+    List<Pessoa> findByOrderByNome();
 }
