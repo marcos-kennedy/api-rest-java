@@ -3,6 +3,7 @@ package com.projetos.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,12 @@ public class PessoasController {
     @PutMapping("/alterar")
     public Pessoa alterarDados(@RequestBody Pessoa pessoa){
         return pessoasRepository.save(pessoa);
+    }
+    @DeleteMapping("/deletar/{id}")
+    public String deletarPessoa(@PathVariable int id){
+        Pessoa pessoa = buscarPessoa(id);
+        pessoasRepository.delete(pessoa);
+        return "Deletado com sucesso";
     }
 
     @GetMapping("")
