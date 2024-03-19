@@ -41,7 +41,11 @@ public class PessoasController {
         pessoasRepository.delete(pessoa);
         return "Deletado com sucesso";
     }
-
+    @GetMapping("/contador")
+    public String contador(){
+        long quantidade = pessoasRepository.count();
+        return quantidade + " pessoas registradas";
+    }
     @GetMapping("")
     public String mensagem(){
         return "Hello Word";
