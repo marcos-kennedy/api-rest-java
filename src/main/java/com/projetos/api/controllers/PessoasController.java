@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +30,11 @@ public class PessoasController {
     public Pessoa buscarPessoa(@PathVariable int id){
         return pessoasRepository.findById(id);
     }
+    @PutMapping("/alterar")
+    public Pessoa alterarDados(@RequestBody Pessoa pessoa){
+        return pessoasRepository.save(pessoa);
+    }
+
     @GetMapping("")
     public String mensagem(){
         return "Hello Word";
