@@ -25,6 +25,10 @@ public class PessoasController {
     public List<Pessoa> listarPessoas(){
         return pessoasRepository.findAll();
     }
+    @GetMapping("/listar/{id}")
+    public Pessoa buscarPessoa(@PathVariable int id){
+        return pessoasRepository.findById(id);
+    }
     @GetMapping("")
     public String mensagem(){
         return "Hello Word";
