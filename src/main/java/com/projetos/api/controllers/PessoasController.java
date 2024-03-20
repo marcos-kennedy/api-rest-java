@@ -36,8 +36,8 @@ public class PessoasController {
         return servico.listarId(id);
     }
     @PutMapping("/alterar")
-    public Pessoa alterarDados(@RequestBody Pessoa pessoa){
-        return pessoasRepository.save(pessoa);
+    public ResponseEntity<?> alterarDados(@RequestBody Pessoa pessoa){
+        return servico.alterar(pessoa);
     }
     @DeleteMapping("/deletar/{id}")
     public String deletarPessoa(@PathVariable int id){

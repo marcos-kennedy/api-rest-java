@@ -40,4 +40,19 @@ public class Servico {
             return new ResponseEntity<>(pessoasRepository.findById(codigo), HttpStatus.OK);
         }
     }
+
+    public ResponseEntity<?> alterar(Pessoa pessoa) {
+        if (pessoasRepository.countById(pessoa.getId()) == 0){
+            mensagem.setMensagem("pessoa não encontrada");
+            return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+        } else if (pessoa.getNome().isEmpty()) {
+            mensagem.setMensagem("Campo nome está vazio");
+            return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+        } else if (pessoa.getIdade() <= 0) {
+            mensagem.setMensagem("idade inválida");
+            return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(pessoasRepository.save(pessoa), HttpStatus.OK);
+        }
+    }
 }
