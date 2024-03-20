@@ -3,6 +3,7 @@ package com.projetos.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,16 +13,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetos.api.models.Pessoa;
-import com.projetos.api.repository.PessoasRepository;
+import com.projetos.api.repositorys.PessoasRepository;
+import com.projetos.api.services.Servico;
 
 @RestController
 public class PessoasController {
     @Autowired
     private PessoasRepository pessoasRepository;
-    
+    @Autowired
+    private Servico servico;
+
     @PostMapping("/cadastrar")
-    public Pessoa cadastrar(@RequestBody Pessoa pessoa){
-        return pessoasRepository.save(pessoa);
+    public ResponseEntity<?> cadastrar(@RequestBody Pessoa pessoa){
+        return servico.cadastrar(pessoa);
     }
     @GetMapping("/listar")
     public List<Pessoa> listarPessoas(){
@@ -53,21 +57,5 @@ public class PessoasController {
     @GetMapping("/buscarPorTermo/{termo}")
     public List<Pessoa> buscarTermo(@PathVariable String termo){
         return pessoasRepository.findByNomeContaining(termo);
-    }
-    @GetMapping("")
-    public String mensagem(){
-        return "Hello Word";
-    }
-    @GetMapping("/home")
-    public String boasVindas(){
-        return "Seja Bem Vindo(a)";
-    }
-    @GetMapping("/home/{nome}")
-    public String boasVindas(@PathVariable String nome){
-        return "Seja Bem Vindo(a) " + nome;
-    }
-    @PostMapping("/pessoa")
-    public Pessoa getPessoa(@RequestBody Pessoa pessoa){
-        return pessoa;
     }
 }
