@@ -40,10 +40,8 @@ public class PessoasController {
         return servico.alterar(pessoa);
     }
     @DeleteMapping("/deletar/{id}")
-    public String deletarPessoa(@PathVariable int id){
-        //Pessoa pessoa = buscarPessoa(id);
-        //pessoasRepository.delete(pessoa);
-        return "Deletado com sucesso";
+    public ResponseEntity<?> deletarPessoa(@PathVariable int id){
+        return servico.deletar(id);
     }
     @GetMapping("/contador")
     public String contador(){

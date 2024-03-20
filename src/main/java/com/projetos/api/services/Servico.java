@@ -55,4 +55,16 @@ public class Servico {
             return new ResponseEntity<>(pessoasRepository.save(pessoa), HttpStatus.OK);
         }
     }
+
+    public ResponseEntity<?> deletar(int id){
+        if (pessoasRepository.countById(id) == 0) {
+            mensagem.setMensagem("Pessoa não encontrada");
+            return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+        } else {
+            Pessoa pessoa = pessoasRepository.findById(id);
+            pessoasRepository.delete(pessoa);
+            mensagem.setMensagem("Pessoa deletada com sucesso");
+            return new ResponseEntity<>(mensagem, HttpStatus.OK);
+        }
+    }
 }
