@@ -24,16 +24,16 @@ public class PessoasController {
     private Servico servico;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?> cadastrar(@RequestBody Pessoa pessoa){
+    public ResponseEntity<?> cadastrarPessoa(@RequestBody Pessoa pessoa){
         return servico.cadastrar(pessoa);
     }
     @GetMapping("/listar")
-    public List<Pessoa> listarPessoas(){
-        return pessoasRepository.findAll();
+    public ResponseEntity<?> listarPessoas(){
+        return servico.listar();
     }
     @GetMapping("/listar/{id}")
-    public Pessoa buscarPessoa(@PathVariable int id){
-        return pessoasRepository.findById(id);
+    public ResponseEntity<?> buscarPessoa(@PathVariable int id){
+        return servico.listarId(id);
     }
     @PutMapping("/alterar")
     public Pessoa alterarDados(@RequestBody Pessoa pessoa){
@@ -41,8 +41,8 @@ public class PessoasController {
     }
     @DeleteMapping("/deletar/{id}")
     public String deletarPessoa(@PathVariable int id){
-        Pessoa pessoa = buscarPessoa(id);
-        pessoasRepository.delete(pessoa);
+        //Pessoa pessoa = buscarPessoa(id);
+        //pessoasRepository.delete(pessoa);
         return "Deletado com sucesso";
     }
     @GetMapping("/contador")

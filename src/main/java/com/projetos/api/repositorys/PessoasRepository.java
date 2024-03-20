@@ -11,4 +11,5 @@ public interface PessoasRepository extends JpaRepository<Pessoa, Integer> {
     Pessoa findById(int id);
     List<Pessoa> findByOrderByNome();
     List<Pessoa> findByNomeContaining(String termo);
+    int countById(int id);
 }

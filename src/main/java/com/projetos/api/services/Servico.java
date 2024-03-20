@@ -27,4 +27,17 @@ public class Servico {
             return new ResponseEntity<>(pessoasRepository.save(pessoa), HttpStatus.CREATED);
         }
     }
+
+    public ResponseEntity<?> listar(){
+        return new ResponseEntity<>(pessoasRepository.findAll(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> listarId(int codigo){
+        if (pessoasRepository.countById(codigo) == 0) {
+            mensagem.setMensagem("pessoa não encontrada");
+            return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(pessoasRepository.findById(codigo), HttpStatus.OK);
+        }
+    }
 }
