@@ -1,4 +1,4 @@
-package com.projetos.api.repository;
+package com.projetos.api.repositorys;
 
 import java.util.List;
 
